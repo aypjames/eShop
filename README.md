@@ -1,6 +1,7 @@
 # e-Shop
 
 - Literally put the name of the project in the readme e.g - Google Books App
+- An e-commerce store that uses Fetches Data within a React App, and uses react-router-dom and Firebase/Firestore
 
 ## Github badges - optional for now but strongly reccomended later
 

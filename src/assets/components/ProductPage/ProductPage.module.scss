@@ -1,0 +1,26 @@
+@import "../../../mixins/mixins.scss";
+
+.ProductCard {
+  display: flex;
+  justify-content: space-between;
+  width: 50vw;
+
+  &_MainImg {
+    background-color: rgb(245, 245, 245);
+
+    & img {
+      width: 400px;
+      height: 500px;
+      object-fit: cover;
+      mix-blend-mode: multiply;
+    }
+  }
+}
+
+// button {
+//   border: 1px solid $main-blue;
+//   color: $main-blue;
+//   background-color: white;
+//   padding: 5px;
+//   font-weight: 600;
+// }
