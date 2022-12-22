@@ -12,20 +12,33 @@ button {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
-.heartIcon {
+.heart-icon-default {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
-.heartIcon:hover {
+.heart-icon-default:hover {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
   color: $heart-red;
   cursor: pointer;
 }
 
-.heartIcon:active {
+.heart-icon-default:active {
   color: $heart-red-hover;
 }
 
-.sale-item {
+.heart-icon-fav {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
   color: $heart-red;
+  cursor: pointer;
+}
+
+.sale-item {
+  color: white;
   font-weight: bold;
+  background-color: $heart-red;
+  padding: 0 4px;
+}
+
+.sale-item-text {
+  color: $heart-red;
 }

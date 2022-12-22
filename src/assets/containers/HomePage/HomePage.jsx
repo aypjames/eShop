@@ -4,7 +4,8 @@ import { useState, useContext, useEffect } from "react";
 import { ProductContext } from "../../../App";
 
 const HomePage = () => {
-  const products = useContext(ProductContext);
+  const globalShopData = useContext(ProductContext);
+  const products = globalShopData.allProducts;
   return (
     <div>
       <h2>All Products</h2>

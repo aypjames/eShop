@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import styles from "./Carousal.module.scss";
 
 const Carousal = () => {
-  const allProducts = useContext(ProductContext);
-  const saleItems = allProducts.filter((product) => product.isOnSale);
+  const globalShopData = useContext(ProductContext);
+  const saleItems = globalShopData.allProducts.filter(
+    (product) => product.isOnSale
+  );
 
   return (
     <div className={styles.Carousal}>

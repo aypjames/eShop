@@ -3,8 +3,10 @@ import { ProductContext } from "../../../App";
 import { useContext } from "react";
 
 const FavouritesList = () => {
-  const allProducts = useContext(ProductContext);
-  const favItems = allProducts.filter((product) => product.isFavourited);
+  const globalShopData = useContext(ProductContext);
+  const favItems = globalShopData.allProducts.filter(
+    (product) => product.isFavourited
+  );
 
   return (
     <div>

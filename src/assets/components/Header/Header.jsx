@@ -1,6 +1,4 @@
 import styles from "./Header.module.scss";
-import CartList from "../../containers/CartList/CartList";
-import FavouritesList from "../../containers/FavouritesList/FavouritesList";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {

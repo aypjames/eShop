@@ -12,11 +12,15 @@ export const ProductContext = createContext();
 
 const App = () => {
   const [allProducts, setAllProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  const globalShopData = { allProducts, cartItems, setCartItems };
 
   useEffect(() => {
     const wrapper = async () => {
       const allKeyboards = await getAllKeyboards();
       setAllProducts(allKeyboards);
+      console.log(allKeyboards);
     };
     wrapper();
   }, []);
@@ -24,7 +28,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className={styles.App}>
-        <ProductContext.Provider value={allProducts}>
+        <ProductContext.Provider value={globalShopData}>
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
