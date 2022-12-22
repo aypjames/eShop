@@ -6,7 +6,7 @@ import HomePage from "./assets/containers/HomePage/HomePage";
 import FavouritesList from "./assets/containers/FavouritesList/FavouritesList";
 import CartList from "./assets/containers/CartList/CartList";
 import ProductPage from "./assets/components/ProductPage/ProductPage";
-import { getAllKeyboards } from "./services/dbInteractions";
+import { getAllKeyboardsFromDb } from "./services/dbInteractions";
 
 export const ProductContext = createContext();
 
@@ -18,7 +18,7 @@ const App = () => {
 
   useEffect(() => {
     const wrapper = async () => {
-      const allKeyboards = await getAllKeyboards();
+      const allKeyboards = await getAllKeyboardsFromDb();
       setAllProducts(allKeyboards);
       console.log(allKeyboards);
     };

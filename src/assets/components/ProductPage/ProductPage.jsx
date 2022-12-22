@@ -2,20 +2,30 @@ import styles from "./ProductPage.module.scss";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../../../App";
 import { useContext, useEffect, useState } from "react";
+import {
+  getKeyboardByIdFromDb,
+  updateFieldInDb,
+} from "../../../services/dbInteractions";
 
 const ProductPage = () => {
+  const [product, setProduct] = useState("");
+  const [favClicked, setFavClicked] = useState(0);
   const [qtyOfProduct, setQtyOfProduct] = useState(0);
   const [switchSelected, setSwitchSelected] = useState("");
   const routeParams = useParams();
-  const globalShopData = useContext(ProductContext);
-  const filteredProduct = globalShopData.allProducts.filter(
-    (product) => product.id === routeParams.id
-  );
-  const product = filteredProduct[0];
 
-  const heartColor = product.isFavourited
-    ? "heart-icon-fav"
-    : "heart-icon-default";
+  useEffect(() => {
+    const wrapper = async () => {
+      const data = await getKeyboardByIdFromDb(routeParams.id);
+      console.log(data);
+      setProduct(data);
+    };
+    wrapper();
+  }, [routeParams, favClicked]);
+
+  const heartColor = () => {
+    return product.isFavourited ? "heart-icon-fav" : "heart-icon-default";
+  };
 
   const handleSwitchSelect = (e) => {
     const switchColor = e.target.value;
@@ -39,6 +49,7 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     const currentCart = globalShopData.cartItems;
     const addItemtoCart = globalShopData.setCartItems;
+
     addItemtoCart([...currentCart], {
       productData: product,
       productVariant: switchSelected,
@@ -49,10 +60,18 @@ const ProductPage = () => {
     );
   };
 
+  const handleFavClick = () => {
+    // keyboardId, fieldName, newValue;
+    updateFieldInDb(product.id, "isFavourited", !product.isFavourited);
+    setFavClicked(favClicked + 1);
+  };
+
+  console.log(product.imgs);
+
   return (
     <div className={styles.ProductCard}>
       <div className={styles.ProductCard_MainImg}>
-        <img src={product.imgs[0]} alt="image of product selected" />
+        {/* <img src={product.imgs[0]} alt="image of product selected" /> */}
       </div>
       <div className={styles.ProductCard_Details}>
         <div className={styles.ProductDetails_Header}>
@@ -60,7 +79,7 @@ const ProductPage = () => {
         </div>
         <div className={styles.ProductDetails_Body}>
           <div id="productImgs">
-            <img
+            {/* <img
               className={styles.ProductCard_Thumbnail}
               src={product.imgs[0]}
               alt={`image 1 of ${product.name} keyboard`}
@@ -74,12 +93,12 @@ const ProductPage = () => {
               className={styles.ProductCard_Thumbnail}
               src={product.imgs[2]}
               alt={`image 1 of ${product.name} keyboard`}
-            />
+            /> */}
           </div>
           {product.isOnSale && <h5 className="sale-item-text">ON SALE</h5>}
           <h3>${product.price}</h3>
           <p>{product.desc}</p>
-
+          {/* 
           <select
             id="productVariants"
             onChange={handleSwitchSelect}
@@ -95,9 +114,9 @@ const ProductPage = () => {
                   {productSwitch}
                 </option>
               ))}
-          </select>
+          </select> */}
 
-          <p>
+          {/* <p>
             Items in stock:{" "}
             {switchSelected !== "" && product.qtyBySwitches[switchSelected]}
           </p>
@@ -119,15 +138,15 @@ const ProductPage = () => {
             </button>
           </div>
           <br />
-          <button onClick={handleAddToCart}>
+          <button onClick={handleAddToCart} disabled={qtyOfProduct === 0}>
             ADD TO CART
             <span className="material-symbols-outlined">trending_flat</span>
           </button>
-          <button>
-            <span className={`material-symbols-outlined ${heartColor}`}>
+          <button onClick={handleFavClick}>
+            <span className={`material-symbols-outlined ${heartColor()}`}>
               favorite
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
