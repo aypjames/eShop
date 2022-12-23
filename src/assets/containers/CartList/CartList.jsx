@@ -10,8 +10,10 @@ const CartList = () => {
   return (
     <div>
       <h2>My Cart</h2>
-      {/* {cartItemsArray &&
-        cartItemsArray.map((item) => <CartItem key={item.id} item={item} />)} */}
+      {cartItemsArray &&
+        cartItemsArray.map((item, index) => (
+          <CartItem key={item.index} item={item} />
+        ))}
     </div>
   );
 };

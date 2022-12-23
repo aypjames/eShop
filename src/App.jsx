@@ -11,10 +11,17 @@ import { getAllKeyboardsFromDb } from "./services/dbInteractions";
 export const ProductContext = createContext();
 
 const App = () => {
+  const [dataFetch, setDataFetch] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(["keyboaard"]);
 
-  const globalShopData = { allProducts, cartItems, setCartItems };
+  const globalShopData = {
+    allProducts,
+    cartItems,
+    setCartItems,
+    dataFetch,
+    setDataFetch,
+  };
 
   useEffect(() => {
     const wrapper = async () => {
@@ -23,7 +30,7 @@ const App = () => {
       console.log(allKeyboards);
     };
     wrapper();
-  }, []);
+  }, [dataFetch]);
 
   return (
     <BrowserRouter>
