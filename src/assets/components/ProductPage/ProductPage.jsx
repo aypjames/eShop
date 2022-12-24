@@ -50,11 +50,15 @@ const ProductPage = () => {
     const currentCart = globalShopData.cartItems;
     const addItemtoCart = globalShopData.setCartItems;
 
-    globalShopData.setCartItems([...currentCart], {
-      productData: product,
-      productVariant: switchSelected,
-      qtyToPurchase: qtyOfProduct,
-    });
+    globalShopData.setCartItems([
+      ...globalShopData.cartItems,
+      {
+        id: product.id,
+        productData: product,
+        productVariant: switchSelected,
+        qtyToPurchase: qtyOfProduct,
+      },
+    ]);
     alert(
       `Added ${qtyOfProduct} ${switchSelected} ${product.name}s to your Cart`
     );

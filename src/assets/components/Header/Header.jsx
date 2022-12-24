@@ -1,8 +1,12 @@
 import styles from "./Header.module.scss";
 import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../../../App";
+import { useContext } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const globalShopData = useContext(ProductContext);
+  const totalItemsInCart = globalShopData.cartItems.length;
 
   const handleNavClick = (pagePath) => {
     navigate(pagePath);
@@ -25,7 +29,7 @@ const Header = () => {
           className={`${styles.Header_Others_Cart} button_secondary`}
         >
           <span className="material-symbols-outlined">shopping_cart</span>
-          <span>MY CART (0)</span>
+          <span>{`MY CART (${totalItemsInCart})`}</span>
         </button>
       </div>
     </div>

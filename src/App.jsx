@@ -13,7 +13,7 @@ export const ProductContext = createContext();
 const App = () => {
   const [dataFetch, setDataFetch] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
-  const [cartItems, setCartItems] = useState(["keyboaard"]);
+  const [cartItems, setCartItems] = useState([]);
 
   const globalShopData = {
     allProducts,

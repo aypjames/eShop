@@ -1,0 +1,36 @@
+@import "../../../mixins/mixins.scss";
+
+.CartItem {
+  display: flex;
+  margin: 15px;
+  justify-content: space-between;
+  width: 500px;
+  height: 120px;
+  border: 1px solid $border-bottom-grey;
+  padding: 10px;
+
+  & h3 {
+    margin: 0;
+  }
+
+  & p {
+    margin: 0;
+    margin-top: 5px;
+  }
+
+  & img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  &_Desc {
+    width: 370px;
+
+    &_Header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

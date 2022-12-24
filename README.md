@@ -71,3 +71,4 @@
 ### Resources
 
 - https://stackoverflow.com/questions/11113008/in-javascript-how-can-i-use-a-function-parameter-as-the-key-to-an-object
+- https://beta.reactjs.org/learn/updating-arrays-in-state
