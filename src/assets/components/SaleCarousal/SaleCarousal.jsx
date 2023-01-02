@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Carousal.module.scss";
 import { getCollectionFromDb } from "../../../services/dbInteractions";
+import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
 
 const SaleCarousal = () => {
@@ -21,33 +22,24 @@ const SaleCarousal = () => {
   }, []);
 
   return (
-    <div className={styles.Carousal}>
+    <div style={{ display: "block", width: 500, height: 500, padding: 10 }}>
       <h2 className={"sale-item"}>On Sale!</h2>
       <Carousel>
         {saleItems &&
-          saleItems.map((product) => {
-            return (
-              <Carousel.Item>
+          saleItems.map((product) => (
+            <Carousel.Item interval={5000}>
+              <Link to={`/product/${product.id}`} key={product.id}>
                 <img
                   className="d-block w-100"
-                  src="holder.js/800x400?text=First slide&bg=373940"
-                  alt="First slide"
+                  src={product.imgs[1]}
+                  alt={`image of ${product.name}`}
                 />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                  </p>
-                  <Link to={`/product/${product.id}`} key={product.id}>
-                    <img
-                      src={product.imgs[1]}
-                      alt={`image of ${product.name}`}
-                    />
-                  </Link>
-                </Carousel.Caption>
-              </Carousel.Item>
-            );
-          })}
+              </Link>
+              <Carousel.Caption>
+                <h3>{product.name}</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
       </Carousel>
     </div>
   );

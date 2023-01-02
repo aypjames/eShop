@@ -7,15 +7,15 @@
   }
 
   &_Imgs {
-    display: flex;
-    overflow: scroll;
+    // display: flex;
+    // overflow: scroll;
     width: 450px;
     padding: 0;
 
     & img {
-      width: 100%;
+      width: 450px;
       height: 300px;
-      object-fit: cover;
+      // object-fit: cover;
     }
   }
 }

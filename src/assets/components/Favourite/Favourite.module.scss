@@ -5,7 +5,7 @@
   margin: 15px;
   justify-content: space-between;
   width: 500px;
-  height: 120px;
+  // height: 120px;
   border: 1px solid $border-bottom-grey;
   padding: 10px;
 
@@ -26,6 +26,8 @@
 
   &_Desc {
     width: 370px;
+    padding: 10px;
+    padding-top: 0;
 
     &_Header {
       display: flex;
