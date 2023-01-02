@@ -10,10 +10,12 @@ button {
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  cursor: pointer;
 }
 
 .heart-icon-default {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  cursor: pointer;
 }
 
 .heart-icon-default:hover {
@@ -30,6 +32,11 @@ button {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
   color: $heart-red;
   cursor: pointer;
+}
+
+.heart-icon-fav:hover {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: black;
 }
 
 .sale-item {

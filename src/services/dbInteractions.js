@@ -7,8 +7,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-export const getAllKeyboardsFromDb = async () => {
-  const querySnapshot = await getDocs(collection(db, "keyboards"));
+export const getCollectionFromDb = async (collectionName) => {
+  const querySnapshot = await getDocs(collection(db, collectionName));
 
   const dataArray = querySnapshot.docs.map((docu) => {
     const id = docu.id;
@@ -30,8 +30,13 @@ export const getKeyboardByIdFromDb = async (keyboardId) => {
   }
 };
 
-export const updateFieldInDb = async (keyboardId, fieldName, newValue) => {
-  const keyboardRef = doc(db, "keyboards", keyboardId);
+export const updateFieldInDb = async (
+  collectionName,
+  DocumentId,
+  fieldName,
+  newValue
+) => {
+  const keyboardRef = doc(db, collectionName, DocumentId);
 
   // Set or remove as favourite.
   await updateDoc(keyboardRef, {

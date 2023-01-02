@@ -1,12 +1,20 @@
 import styles from "./Header.module.scss";
 import { useNavigate } from "react-router-dom";
-import { ProductContext } from "../../../App";
-import { useContext } from "react";
+import { useEffect, useState } from "react";
+import { getCollectionFromDb } from "../../../services/dbInteractions";
 
-const Header = () => {
+const Header = ({ userData }) => {
   const navigate = useNavigate();
-  const globalShopData = useContext(ProductContext);
-  const totalItemsInCart = globalShopData.cartItems.length;
+  // const [totalItemsInCart, setTotalItemsInCart] = useState(0);
+
+  // useEffect(() => {
+  //   const wrapper = async () => {
+  //     const userDataFromDb = await getCollectionFromDb("userData");
+  //     const totalItems = userDataFromDb[0].cartItems.length;
+  //     setTotalItemsInCart(totalItems);
+  //   };
+  //   wrapper();
+  // }, [userData]);
 
   const handleNavClick = (pagePath) => {
     navigate(pagePath);
@@ -29,7 +37,10 @@ const Header = () => {
           className={`${styles.Header_Others_Cart} button_secondary`}
         >
           <span className="material-symbols-outlined">shopping_cart</span>
-          <span>{`MY CART (${totalItemsInCart})`}</span>
+          {/* <span>{`MY CART (${
+            totalItemsInCart !== undefined && totalItemsInCart
+          })`}</span> */}
+          <span>MY CART</span>
         </button>
       </div>
     </div>

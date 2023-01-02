@@ -1,8 +1,34 @@
 import styles from "./Favourite.module.scss";
 
 import { Link } from "react-router-dom";
+import { updateFieldInDb } from "../../../services/dbInteractions";
 
-const Favourite = ({ product }) => {
+const Favourite = ({ product, userData, favUpdate, setFavUpdate }) => {
+  const handleFavClick = () => {
+    //Check if product alread in favList
+    const isInFavList = userData[0].favItems.find((element) => {
+      if (element.id === product.id) {
+        return true;
+      }
+      return false;
+    });
+
+    const updateFavList = () => {
+      if (isInFavList === undefined) {
+        // Product not in favlist and will be added.
+        return [...userData[0].favItems, product];
+      } else {
+        //  Product is in favList and will be removed.
+        return userData[0].favItems.filter((item) => item.id !== product.id);
+      }
+    };
+
+    console.log("Fav List", updateFavList());
+
+    updateFieldInDb("userData", userData[0].id, "favItems", updateFavList());
+    setFavUpdate(favUpdate + 1);
+  };
+
   return (
     <div className={styles.Favourite}>
       <img src={product.imgs[2]} alt={`image of ${product.name}`} />
@@ -11,7 +37,12 @@ const Favourite = ({ product }) => {
           <Link to={`/product/${product.id}`}>
             <h3>{product.name}</h3>{" "}
           </Link>
-          <span>X</span>
+          <span
+            onClick={handleFavClick}
+            className="material-symbols-outlined heart-icon-fav"
+          >
+            favorite
+          </span>
         </div>
         <p>{product.desc}</p>
       </div>

@@ -1,35 +1,49 @@
 import styles from "./ProductPage.module.scss";
 import { useParams } from "react-router-dom";
-import { ProductContext } from "../../../App";
-import { useContext, useEffect, useState } from "react";
-import { updateFieldInDb } from "../../../services/dbInteractions";
+import { useEffect, useState } from "react";
+import {
+  updateFieldInDb,
+  getCollectionFromDb,
+  getKeyboardByIdFromDb,
+} from "../../../services/dbInteractions";
 
 const ProductPage = () => {
   const [product, setProduct] = useState("");
-  const [favClicked, setFavClicked] = useState(0);
+  const [dataChange, setDataChange] = useState(0);
+  const [userData, setUserData] = useState([]);
   const [qtyOfProduct, setQtyOfProduct] = useState(0);
   const [switchSelected, setSwitchSelected] = useState("");
   const routeParams = useParams();
-  const globalShopData = useContext(ProductContext);
-  const filteredProduct = globalShopData.allProducts.filter(
-    (product) => product.id === routeParams.id
-  );
+  let customId = `${routeParams.id}${switchSelected}`;
 
   useEffect(() => {
-    setProduct(filteredProduct[0]);
-  });
+    const wrapper = async () => {
+      const keyboardData = await getKeyboardByIdFromDb(routeParams.id);
+      const userDataFromDb = await getCollectionFromDb("userData");
+      setProduct(keyboardData);
+      setUserData(userDataFromDb);
+    };
+    wrapper();
+  }, [dataChange]);
 
-  useEffect(() => {
-    globalShopData.setDataFetch(globalShopData.dataFetch + 1);
-  }, [favClicked]);
-
-  const heartColor = () => {
-    return product.isFavourited ? "heart-icon-fav" : "heart-icon-default";
+  const colorOfHeart = () => {
+    const isInFavList = userData[0].favItems.find((element) => {
+      if (element.id === routeParams.id) {
+        return true;
+      }
+      return false;
+    });
+    return isInFavList !== undefined ? "heart-icon-fav" : "heart-icon-default";
   };
 
   const handleSwitchSelect = (e) => {
     const switchColor = e.target.value;
-    setQtyOfProduct(1);
+    if (product.qtyBySwitches[switchColor] === 0) {
+      setQtyOfProduct(0);
+    } else {
+      setQtyOfProduct(1);
+    }
+
     setSwitchSelected(switchColor);
   };
 
@@ -39,35 +53,82 @@ const ProductPage = () => {
     }
   };
 
-  const handleQtyInc = () => {
+  const productAvailForPurchase = () => {
     const maxQtyOfProduct = product.qtyBySwitches[switchSelected];
-    if (qtyOfProduct < maxQtyOfProduct) {
+    const itemInCart = userData[0].cartItems.filter(
+      (item) => item.id === customId
+    );
+
+    if (itemInCart.length > 0) {
+      let qtyAlreadyInCart = itemInCart[0].qtyToPurchase;
+      return maxQtyOfProduct - qtyAlreadyInCart;
+    } else {
+      return maxQtyOfProduct;
+    }
+  };
+
+  const handleQtyInc = () => {
+    if (qtyOfProduct < productAvailForPurchase()) {
       setQtyOfProduct(qtyOfProduct + 1);
+    } else {
     }
   };
 
   const handleAddToCart = () => {
-    const currentCart = globalShopData.cartItems;
-    const addItemtoCart = globalShopData.setCartItems;
+    //Check if product already in cartList
+    const existingItemInCart = userData[0].cartItems.filter(
+      (item) => item.id === customId
+    );
+    const existingItemQty =
+      existingItemInCart.length > 0 ? existingItemInCart[0].qtyToPurchase : 0;
+    const otherItemsInCart = userData[0].cartItems.filter(
+      (item) => item.id !== customId
+    );
 
-    globalShopData.setCartItems([
-      ...globalShopData.cartItems,
+    //   collectionName, DocumentId, fieldName, newValue;
+    updateFieldInDb("userData", userData[0].id, "cartItems", [
+      ...otherItemsInCart,
       {
-        id: product.id,
-        productData: product,
+        id: customId,
+        productId: routeParams.id,
         productVariant: switchSelected,
-        qtyToPurchase: qtyOfProduct,
+        qtyToPurchase: qtyOfProduct + existingItemQty,
+        productData: product,
       },
     ]);
+
     alert(
       `Added ${qtyOfProduct} ${switchSelected} ${product.name}s to your Cart`
     );
+    setQtyOfProduct(1);
+    setDataChange(dataChange + 1);
   };
 
   const handleFavClick = () => {
-    // keyboardId, fieldName, newValue;
-    updateFieldInDb(product.id, "isFavourited", !product.isFavourited);
-    setFavClicked(favClicked + 1);
+    //Check if product alread in favList
+    const isInFavList = userData[0].favItems.find((element) => {
+      if (element.id === routeParams.id) {
+        return true;
+      }
+      return false;
+    });
+
+    const updateFavList = () => {
+      if (isInFavList === undefined) {
+        // Adding item to favourites
+        return [...userData[0].favItems, { id: routeParams.id, ...product }];
+      } else {
+        // Removing item to favourites
+        return userData[0].favItems.filter(
+          (item) => item.id !== routeParams.id
+        );
+      }
+    };
+
+    console.log("Fav List", updateFavList());
+
+    updateFieldInDb("userData", userData[0].id, "favItems", updateFavList());
+    setDataChange(dataChange + 1);
   };
 
   return (
@@ -139,19 +200,25 @@ const ProductPage = () => {
                   onClick={handleQtyInc}
                   disabled={
                     qtyOfProduct === product.qtyBySwitches[switchSelected] ||
-                    qtyOfProduct === 0
+                    qtyOfProduct === 0 ||
+                    qtyOfProduct >= productAvailForPurchase()
                   }
                 >
                   +
                 </button>
               </div>
               <br />
-              <button onClick={handleAddToCart} disabled={qtyOfProduct === 0}>
+              <button
+                onClick={handleAddToCart}
+                disabled={
+                  qtyOfProduct === 0 || qtyOfProduct > productAvailForPurchase()
+                }
+              >
                 ADD TO CART
                 <span className="material-symbols-outlined">trending_flat</span>
               </button>
               <button onClick={handleFavClick}>
-                <span className={`material-symbols-outlined ${heartColor()}`}>
+                <span className={`material-symbols-outlined ${colorOfHeart()}`}>
                   favorite
                 </span>
               </button>
