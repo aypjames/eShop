@@ -1,9 +1,13 @@
 @import "../../../mixins/mixins.scss";
 
+.ProductPage {
+  margin: 15px;
+}
+
 .ProductCard {
   display: flex;
   justify-content: space-between;
-  width: 50vw;
+  width: 80vw;
 
   &_MainImg {
     background-color: rgb(245, 245, 245);
@@ -15,17 +19,54 @@
     }
   }
 
+  &_Details {
+    margin-left: 10px;
+  }
+
   &_Thumbnail {
     width: 100px;
     height: 100px;
     object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
   }
 }
 
-// button {
-//   border: 1px solid $main-blue;
-//   color: $main-blue;
-//   background-color: white;
-//   padding: 5px;
-//   font-weight: 600;
-// }
+.ProductDetails_Body {
+  display: flex;
+
+  &_Imgs {
+    align-content: space-around;
+  }
+
+  &_Text {
+    margin-left: 10px;
+
+    &_Qty {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      width: 120px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    &_Transaction {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 190px;
+
+      & button {
+        align-items: center;
+      }
+    }
+  }
+}
+
+.transactionBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}

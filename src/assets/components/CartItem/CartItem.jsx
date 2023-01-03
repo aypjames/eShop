@@ -68,7 +68,7 @@ const Cart = ({
       <div className={styles.CartItem_Desc}>
         <div className={styles.CartItem_Desc_Header}>
           <Link to={`/product/${productLink}`}>
-            <h3>{productData.name}</h3>{" "}
+            <h5>{productData.name}</h5>{" "}
           </Link>
           <button onClick={handleItemRemoval}>
             <span className="material-symbols-outlined">delete</span>
@@ -76,23 +76,24 @@ const Cart = ({
         </div>
         <h4>${productData.price}</h4>
         <p>Switch Type: {productVariant}</p>
-        <br />
-        <p>Qty: </p>
-        <button onClick={handleQtyDec} disabled={productQtyToPurchase === 1}>
-          -
-        </button>
-        <p>{productQtyToPurchase}</p>
-        <button
-          onClick={handleQtyInc}
-          disabled={
-            productQtyToPurchase === productData.qtyBySwitches[productVariant]
-          }
-        >
-          +
-        </button>
-        <br />
-        <br />
-        <p>Subtotal: ${productData.price * productQtyToPurchase}</p>
+        <div className={styles.CartItem_Desc_Qty}>
+          <p>Qty: </p>
+          <button onClick={handleQtyDec} disabled={productQtyToPurchase === 1}>
+            -
+          </button>
+          <p>{productQtyToPurchase}</p>
+          <button
+            onClick={handleQtyInc}
+            disabled={
+              productQtyToPurchase === productData.qtyBySwitches[productVariant]
+            }
+          >
+            +
+          </button>
+        </div>
+        <p className={styles.CartItem_Desc_Subtotal}>
+          Subtotal: ${productData.price * productQtyToPurchase}
+        </p>
       </div>
     </div>
   );

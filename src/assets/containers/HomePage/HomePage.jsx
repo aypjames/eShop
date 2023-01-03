@@ -3,6 +3,7 @@ import SaleCarousal from "../../components/SaleCarousal/SaleCarousal";
 import { useState, useContext, useEffect } from "react";
 import { ProductContext } from "../../../App";
 import { getCollectionFromDb } from "../../../services/dbInteractions";
+import styles from "./HomePage.module.scss";
 
 const HomePage = () => {
   // const globalShopData = useContext(ProductContext);
@@ -20,13 +21,14 @@ const HomePage = () => {
 
   return (
     <div>
-      <h2>All Products</h2>
       <SaleCarousal />
-      <h3>List of All Products</h3>
-      {productData &&
-        productData.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      <h3 className={styles.HomePage_Header}>List of All Products</h3>
+      <div className={styles.HomePage_Products}>
+        {productData &&
+          productData.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
     </div>
   );
 };

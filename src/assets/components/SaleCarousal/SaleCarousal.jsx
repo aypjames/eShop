@@ -22,8 +22,8 @@ const SaleCarousal = () => {
   }, []);
 
   return (
-    <div style={{ display: "block", width: 500, height: 500, padding: 10 }}>
-      <h2 className={"sale-item"}>On Sale!</h2>
+    <div style={{ display: "block", width: 500, height: 400, padding: 10 }}>
+      <h2 className={"sale-item"}>On Sale</h2>
       <Carousel>
         {saleItems &&
           saleItems.map((product) => (

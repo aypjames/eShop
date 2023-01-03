@@ -1,6 +1,7 @@
 import Favourite from "../../components/Favourite/Favourite";
 import { useEffect, useState } from "react";
 import { getCollectionFromDb } from "../../../services/dbInteractions";
+import styles from "./FavoritesList.module.scss";
 
 const FavouritesList = () => {
   const [userData, setUserData] = useState([]);
@@ -15,9 +16,9 @@ const FavouritesList = () => {
   }, [favUpdate]);
 
   return (
-    <div>
+    <div className={styles.FavouritesList}>
       <h2>My Favourites</h2>
-      {userData.length > 0 &&
+      {userData.length && userData[0].favItems.length !== 0 ? (
         userData[0].favItems.map((product) => (
           <Favourite
             key={product.id}
@@ -26,7 +27,10 @@ const FavouritesList = () => {
             favUpdate={favUpdate}
             setFavUpdate={setFavUpdate}
           />
-        ))}
+        ))
+      ) : (
+        <p>You don't have any favourites :(</p>
+      )}
     </div>
   );
 };

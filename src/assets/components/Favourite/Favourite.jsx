@@ -35,7 +35,7 @@ const Favourite = ({ product, userData, favUpdate, setFavUpdate }) => {
       <div className={styles.Favourite_Desc}>
         <div className={styles.Favourite_Desc_Header}>
           <Link to={`/product/${product.id}`}>
-            <h3>{product.name}</h3>{" "}
+            <h5>{product.name}</h5>{" "}
           </Link>
           <span
             onClick={handleFavClick}

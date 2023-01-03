@@ -6,6 +6,8 @@ import {
   updateFieldInDb,
 } from "../../../services/dbInteractions";
 
+import styles from "./CartList.module.scss";
+
 const CartList = () => {
   const [userData, setUserData] = useState([]);
   const [productData, setProductData] = useState([]);
@@ -67,7 +69,7 @@ const CartList = () => {
   };
 
   return (
-    <div>
+    <div className={styles.CartList}>
       <h2>My Cart</h2>
       {userData.length > 0 &&
         userData[0].cartItems.map((item) => (
