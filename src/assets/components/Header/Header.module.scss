@@ -1,0 +1,50 @@
+@import "../../../mixins/mixins.scss";
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+  border-bottom: 1px solid $border-bottom-grey;
+  padding: 5px;
+
+  &_Title {
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+    & h2 {
+      margin: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &_Others {
+    height: 40px;
+    width: 170px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    &_Heart {
+      height: inherit;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+      }
+    }
+
+    &_Cart {
+      height: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

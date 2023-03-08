@@ -1,6 +1,7 @@
 # e-Shop
 
 - Literally put the name of the project in the readme e.g - Google Books App
+- An e-commerce store that uses Fetches Data within a React App, and uses react-router-dom and Firebase/Firestore
 
 ## Github badges - optional for now but strongly reccomended later
 
@@ -24,7 +25,11 @@
 ## Setup
 
 - List any steps required to run the app locally
+
   - npm install
+
+    - npm install react-bootstrap bootstrap
+
   - api keys needed
   - env files
   - be specific about version numbers (node version, java version)
@@ -49,6 +54,9 @@
 - What went well?
 - What are you proud of?
 - What was a challenge?
+  - Colouring of fav button.
+  - Should we call on the database on each component?
+  - I think there was an issue with data not showing .id but I wasn't able to find the problem. Best thing is to first also see what is the data that is coming out of the API call.
 - What you'd do differently?
 
 ## Future Goals
@@ -56,6 +64,7 @@
 - If time and skill weren't an object what would you change?
 - Ideas for new features
 - Refactoring/refinement
+- Ability for more users to use the site, including logging in and out.
 
 ## Further reading or links to inspiration
 
@@ -66,3 +75,10 @@
 - Twitter (or alternatives)
 - Portfolio
 - Linkedin
+
+### Resources
+
+- https://stackoverflow.com/questions/11113008/in-javascript-how-can-i-use-a-function-parameter-as-the-key-to-an-object
+- https://beta.reactjs.org/learn/updating-arrays-in-state
+- https://www.w3schools.com/js/js_popup.asp
+- searching through objects in arrays to find value - https://bobbyhadz.com/blog/javascript-check-if-array-contains-object

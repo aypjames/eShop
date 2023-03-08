@@ -1,0 +1,11 @@
+.HomePage {
+  &_Header {
+    margin: 0 10px;
+  }
+
+  &_Products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
