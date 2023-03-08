@@ -6,12 +6,9 @@ import { updateFieldInDb } from "../../../services/dbInteractions";
 const Favourite = ({ product, userData, favUpdate, setFavUpdate }) => {
   const handleFavClick = () => {
     //Check if product alread in favList
-    const isInFavList = userData[0].favItems.find((element) => {
-      if (element.id === product.id) {
-        return true;
-      }
-      return false;
-    });
+    const isInFavList = userData[0].favItems.find(
+      (element) => element.id === product.id
+    );
 
     const updateFavList = () => {
       if (isInFavList === undefined) {

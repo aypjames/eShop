@@ -107,12 +107,9 @@ const ProductPage = () => {
 
   const handleFavClick = () => {
     //Check if product alread in favList
-    const isInFavList = userData[0].favItems.find((element) => {
-      if (element.id === routeParams.id) {
-        return true;
-      }
-      return false;
-    });
+    const isInFavList = userData[0].favItems.find(
+      (element) => element.id === product.id
+    );
 
     const updateFavList = () => {
       if (isInFavList === undefined) {
