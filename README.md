@@ -3,8 +3,6 @@
 Online store for buying keyboards built using React and SCSS. The app uses Google Firebase - Firestore to
 store and retrieve data.
 
-[View deployed App](https://keybored-psi.vercel.app/)
-
 ![Screenshot of Homepage](./src/assets/READMEImages/keyboardScreenshot1.png)
 ![Screenshot of Product Page](./src/assets/READMEImages/keyboardScreenshot2.png)
 
