@@ -1,20 +1,8 @@
 import styles from "./Header.module.scss";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getCollectionFromDb } from "../../../services/dbInteractions";
 
 const Header = ({ userData }) => {
   const navigate = useNavigate();
-  // const [totalItemsInCart, setTotalItemsInCart] = useState(0);
-
-  // useEffect(() => {
-  //   const wrapper = async () => {
-  //     const userDataFromDb = await getCollectionFromDb("userData");
-  //     const totalItems = userDataFromDb[0].cartItems.length;
-  //     setTotalItemsInCart(totalItems);
-  //   };
-  //   wrapper();
-  // }, [userData]);
 
   const handleNavClick = (pagePath) => {
     navigate(pagePath);

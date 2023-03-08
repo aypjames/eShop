@@ -21,8 +21,6 @@ const App = () => {
       const userDataFromDb = await getCollectionFromDb("userData");
       setAllProducts(allKeyboards);
       setUserData(userDataFromDb);
-      console.log("shop data", allKeyboards);
-      console.log("user data", userDataFromDb);
     };
     wrapper();
   }, [dataFetch]);

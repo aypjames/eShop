@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className={styles.ProductCard}>
       <Link to={`/product/${product.id}`}>
-        <img src={product.imgs[0]} alt={`image of ${product.name} keyboard`} />
+        <img src={product.imgs[0]} alt={`${product.name} keyboard`} />
         <div className={styles.ProductInfo}>
           <div className={styles.ProductInfo_Details}>
             <h4>{product.name}</h4>

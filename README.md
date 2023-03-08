@@ -1,84 +1,58 @@
-# e-Shop
+# Keybored - e-Store for Mechnical Keyboards
 
-- Literally put the name of the project in the readme e.g - Google Books App
-- An e-commerce store that uses Fetches Data within a React App, and uses react-router-dom and Firebase/Firestore
+Online store for buying keyboards built using React and SCSS. The app uses Google Firebase - Firestore to
+store and retrieve data.
 
-## Github badges - optional for now but strongly reccomended later
+[View deployed App](https://keybored-psi.vercel.app/)
 
-- https://betterprogramming.pub/add-badges-to-a-github-repository-716d2988dc6a
-- Will need CI
-- Most important will be test coverage ones
+![Screenshot of Homepage](./src/assets/READMEImages/keyboardScreenshot1.png)
+![Screenshot of Product Page](./src/assets/READMEImages/keyboardScreenshot2.png)
 
-## Image
+## MVP
 
-- Put a screenshot of it, or maybe several if you have responsive design
+At a minimum the e-shop website should have two pages:
 
-## Link to Deployed Version
+- [x] A Grid of products
+- [x] Carousel of featured products
+- [x] Product Page that allows you to add to cart and select product variants
+- [x] All data should be stored in Firestore and fetched by the frontend, there should be NO static product data in the react application
+- [x] You should store the following information: quantity, variants (could be colors, sizes, etc), price per unit, name, image url, favourited or not (boolean)
 
-- If you've deployed it, make it easily accesible.
+### BONUS
 
-- Netlify for react apps
-- Heroku (check student tier)
-- Fly.io
-- AWS/Azure/GCP will impress but might not be free
+Create a cart system/page and add logic to prevent users from adding items to cart that are no longer in stock.
+You will have to check the current cart and the product quantity Cart page should have the following:
 
-## Setup
+- [x] List of products in cart
+- [x] Ability to change quantity of products in cart
+- [x] Ability to remove items from cart
 
-- List any steps required to run the app locally
+## Features
 
-  - npm install
+- A favourites page to view all your favourited products
+- A product page to view images and details about each product
+- Cart System that does not allow to order more than stock availability
 
-    - npm install react-bootstrap bootstrap
+## Things to improve
 
-  - api keys needed
-  - env files
-  - be specific about version numbers (node version, java version)
+- Potentially could create an array of promises and do Promise.all
+- Manually create Carousal
+- Add count of cart items to shopping cart item
+- convert navigate to Links
 
-## Description of project (spec / MVP)
+## Useful Resources
 
-- Talk about the problem you were trying to solve
-- Requirements. I.e - use a certain tech stack, use a certain design pattern
+- [Function Parameter as Object Key](https://stackoverflow.com/questions/11113008/in-javascript-how-can-i-use-a-function-parameter-as-the-key-to-an-object)
+- [Updating arrays in State](https://beta.reactjs.org/learn/updating-arrays-in-state)
+- [Popups in JS](https://www.w3schools.com/js/js_popup.asp)
+- [searching through objects in arrays to find value](https://bobbyhadz.com/blog/javascript-check-if-array-contains-object)
+- [React-router-dom](https://reactrouter.com/docs/en/v6/getting-started/overview)
+- [Dummy JSON](https://dummyjson.com/)
+- [Fake Store](https://fakestoreapi.com/)
 
-## Approach
+---
 
-- Talk about your approach to the problem
-  - How did you solve it (design patterns, tools, concepts etc)
-  - How did you learn what you needed? (If beyond the course)
-  - Why did you chose to make it the way you did? (OOP vs functional, React vs plain JS, modules vs one big file)
-  - Did you use any librarys? why?
+### Reachout
 
-(The rest can be in any order)
-
-## Reflection
-
-- What went well?
-- What are you proud of?
-- What was a challenge?
-  - Colouring of fav button.
-  - Should we call on the database on each component?
-  - I think there was an issue with data not showing .id but I wasn't able to find the problem. Best thing is to first also see what is the data that is coming out of the API call.
-- What you'd do differently?
-
-## Future Goals
-
-- If time and skill weren't an object what would you change?
-- Ideas for new features
-- Refactoring/refinement
-- Ability for more users to use the site, including logging in and out.
-
-## Further reading or links to inspiration
-
-- Link to the relevant framework docs
-
-### Stay in touch
-
-- Twitter (or alternatives)
-- Portfolio
-- Linkedin
-
-### Resources
-
-- https://stackoverflow.com/questions/11113008/in-javascript-how-can-i-use-a-function-parameter-as-the-key-to-an-object
-- https://beta.reactjs.org/learn/updating-arrays-in-state
-- https://www.w3schools.com/js/js_popup.asp
-- searching through objects in arrays to find value - https://bobbyhadz.com/blog/javascript-check-if-array-contains-object
+- [LinkedIn](https://au.linkedin.com/in/ayushjames)
+- [Email](mailto:ayushpjames@gmail.com)
